@@ -29,9 +29,9 @@
 
 ---
 
-## 💎 Hidden Gems (Donate to Unlock)
+## 💎 Hidden Gems
 
-Support the development and unlock these exclusive fun features!
+As a token of appreciation for those who support the project's development, we've prepared these special features as a **Thank You** gift:
 
 ### 🌪️ Super Mode
 Activate the secret **Super Mode** for an "explosive" cleaning experience. Warning: It's extremely powerful! (Try it to believe it 😉)
