@@ -1,10 +1,10 @@
 <p align="center">
   <h1 align="center">🧹 Mac Cleaner</h1>
   <p align="center">
-    <strong>Powerful & Easy-to-use Mac Cleaner</strong>
+    <strong>Your Mac, Your Control. 100% Offline & Private.</strong>
   </p>
   <p align="center">
-    Clean junk files, system caches, and free up disk space with a single click.
+    Free up disk space with zero tracking. No data leaves your machine. You decide exactly what to delete.
   </p>
 </p>
 
