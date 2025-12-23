@@ -1,0 +1,503 @@
+/* ===== Threat Scanner Styles ===== */
+
+/* Threats Header with Update Button */
+.threats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.threats-header h2 {
+    margin: 0;
+}
+
+.btn-update-db {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-update-db:hover {
+    background: rgba(59, 130, 246, 0.2);
+}
+
+.btn-update-db:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-update-db svg {
+    stroke: currentColor;
+}
+
+.btn-update-db.updating svg {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Source Info Cards - 4 columns */
+.threats-sources {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.threats-sources.four-columns {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.source-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 120px;
+}
+
+.source-card.clamav-engine {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: linear-gradient(135deg, var(--bg-card), rgba(245, 158, 11, 0.05));
+}
+
+.source-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.source-header strong {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+}
+
+.source-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    margin: 0 0 auto 0;
+    flex: 1;
+}
+
+.source-status {
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+}
+
+.status-text {
+    font-size: 0.75rem;
+    color: var(--safe);
+}
+
+.status-text:not(:empty):first-letter {
+    color: var(--safe);
+}
+
+.source-card.clamav-engine .status-text {
+    color: var(--text-secondary);
+}
+
+/* Install ClamAV Button */
+.btn-install-clamav {
+    padding: 0.35rem 0.75rem;
+    background: var(--accent);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-install-clamav:hover {
+    background: #2563eb;
+}
+
+.btn-install-clamav:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-install-clamav.hidden {
+    display: none;
+}
+
+.btn-install-clamav.btn-uninstall {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--danger);
+    color: var(--danger);
+}
+
+.btn-install-clamav.btn-uninstall:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+/* Source Progress Bar */
+.source-progress {
+    height: 4px;
+    background: var(--bg-dark);
+    border-radius: 2px;
+    overflow: hidden;
+    flex: 1;
+    max-width: 100px;
+}
+
+.source-progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent);
+    transition: width 0.3s;
+}
+
+.badge.warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--risky);
+}
+
+/* Scan Targets Selection */
+.scan-targets {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.scan-targets h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.scan-target-list {
+    margin-top: 1rem;
+}
+
+.scan-target-item {
+    margin-bottom: 0.75rem;
+}
+
+.scan-target-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--bg-dark);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.scan-target-label:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.scan-target-checkbox {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.scan-target-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.scan-target-info strong {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+}
+
+.scan-target-desc {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.scan-estimate {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 500;
+    min-width: 50px;
+    text-align: right;
+}
+
+/* Remove button (- icon) next to checkbox */
+.remove-custom-btn {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid var(--danger);
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.remove-custom-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+}
+
+.remove-custom-btn svg {
+    stroke: var(--danger);
+}
+
+/* Custom path name with scrolling for long text */
+.scan-target-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    overflow: hidden;
+    /* Contain the scrolling text */
+    min-width: 0;
+    /* Allow flex item to shrink */
+}
+
+.custom-path-name {
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+}
+
+/* Scrolling text container */
+.scan-target-info:hover .custom-path-name {
+    animation: scroll-text 4s linear infinite;
+}
+
+@keyframes scroll-text {
+
+    0%,
+    20% {
+        transform: translateX(0);
+    }
+
+    80%,
+    100% {
+        transform: translateX(calc(-100% + 150px));
+    }
+}
+
+.custom-path-full {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+.total-scan-estimate {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-scan-estimate strong {
+    color: var(--text-primary);
+}
+
+.total-scan-estimate #total-scan-time {
+    color: var(--accent);
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Scan Section */
+.scan-section {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.scan-section .progress-bar {
+    max-width: 600px;
+    margin: 0 auto 1rem;
+}
+
+/* Threats Results */
+.threats-results {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.results-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.results-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.threats-list {
+    max-height: 400px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+}
+
+.threat-item {
+    display: flex;
+    align-items: center;
+    /* Reserve space on left for AI cat: 45px */
+    padding: 0.75rem 0.75rem 0.75rem 45px;
+    background: var(--bg-dark);
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+    transition: background 0.2s;
+}
+
+.threat-item:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.threat-item input[type="checkbox"] {
+    margin-right: 1rem;
+}
+
+.threat-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.threat-name {
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.threat-path {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.threat-severity {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.threat-severity.high {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger);
+}
+
+.threat-severity.medium {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--risky);
+}
+
+.threat-severity.low {
+    background: rgba(59, 130, 246, 0.2);
+    color: var(--accent);
+}
+
+.threats-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+}
+
+.threats-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.threats-summary #threats-count {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.threats-summary #threats-size {
+    color: var(--text-secondary);
+}
+
+/* Threats History */
+.threats-history {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem;
+}
+
+.threats-history h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+}
+
+.threats-history .history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.history-item-threats {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    background: var(--bg-dark);
+    border-radius: 6px;
+}
+
+.history-item-threats .history-date {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+}
+
+.history-item-threats .history-count {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--danger);
+}
