@@ -10,17 +10,40 @@
 
 ---
 
-## ✨ Features
 
-- **🚀 Smart Scan**: Automatically detects system junk, browser caches, and development logs.
-- **🛡️ Virus Scan**: Integrated threat detection to keep your Mac safe.
-- **🗑️ Deep Clean**: Carefully removes:
-  - System Caches & Logs
-  - Browser Data (Chrome, Safari, Firefox, Arc)
-  - Developer Caches (Xcode, npm, yarn, Docker)
-  - Trash & Temporary Files
-- **📱 App Uninstaller**: Completely remove apps along with their hidden leftovers.
-- **🐱 AI Helper**: Smart assistant to guide you through the cleaning process.
+---
+
+## ✨ Features Breakdown
+
+### 🚀 Smart & Safe Cleaning
+- **Deep Clean**: Intelligently scans specific system paths to remove cache, logs, and temporary files without touching your personal data.
+- **Safety First**: Buil-in **Safety Mode** prevents deleting critical system files. You can customize the **Safelist** to protect specific folders or extensions.
+
+### �️ Threat Detection
+- **Integrated ClamAV Engine**: Uses the powerful open-source ClamAV engine to detect potential threats and malicious files hiding in your system.
+- **Real-time Stats**: Shows you exactly what's being scanned.
+
+### ⚙️ Power User Tools
+- **Scheduler**: Set it and forget it! Configure auto-cleaning schedules (Daily, Weekly) to keep your Mac running smooth.
+- **App Uninstaller**: Don't just delete the app—remove its leftover preferences, caches, and support files instantly.
+
+---
+
+## 💎 Hidden Gems (Donate to Unlock)
+
+Support the development and unlock these exclusive fun features!
+
+### 🌪️ Super Mode
+Activate the secret **Super Mode** for an "explosive" cleaning experience. Warning: It's extremely powerful! (Try it to believe it 😉)
+
+### 🐱 AI Cat Helper
+Meet your new best friend! This smart animated assistant lives in your menu bar.
+- **Smart Tips**: Gives you advice on how to save space.
+- **Interactive**: It reacts to your actions and keeps you company while cleaning.
+- **Personality**: It's not just a bot, it's a companion!
+
+---
+
 
 ## 📥 Download
 
