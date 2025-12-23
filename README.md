@@ -48,7 +48,23 @@ To scan and clean hidden junk files effectively, Mac Cleaner needs **Full Disk A
    - *If you don't see it:* Click the **+** button at the bottom, navigate to your Applications folder, and select Mac Cleaner.
 4. Restart the app if prompted.
 
+
 > 🔒 **Note**: We respect your privacy. This permission is ONLY used to scan for junk files and caches on your disk. No personal data is ever collected or sent anywhere.
+
+## 🛠️ Troubleshooting
+
+### "App is damaged and can't be opened" Error
+If you see a message saying **"MacCleaner.app is damaged and can't be opened"**, do not worry. This is a common warning for open-source apps that aren't notarized by Apple.
+
+**To fix it:**
+
+1. Move **Mac Cleaner** to your **Applications** folder.
+2. Open the **Terminal** app.
+3. Paste the following command and hit Enter:
+   ```bash
+   xattr -cr /Applications/MacCleaner.app
+   ```
+4. Now you can open the app normally!
 
 ---
 
