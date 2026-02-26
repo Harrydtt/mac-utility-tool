@@ -26,6 +26,8 @@
 ### ⚙️ Power User Tools
 - **Scheduler**: Set it and forget it! Configure auto-cleaning schedules (Daily, Weekly) to keep your Mac running smooth.
 - **App Uninstaller**: Don't just delete the app—remove its leftover preferences, caches, and support files instantly.
+- **System Optimizer**: Control startup apps and background services to speed up your Mac's boot time and performance.
+- **Diagnostic Reports**: Analyze system logs and identify problematic applications, crashes, and performance bottlenecks easily.
 
 ### 🌐 P2P File Transfer
 - **Direct Sharing**: Quickly send files and folders to any device on your local network or securely via internet.
@@ -36,21 +38,7 @@
 - **Always Current**: Mac Ultility Tool automatically checks for and downloads the latest features and security updates.
 - **Non-Intrusive**: Updates happen quietly in the background, only prompting you when they are ready to install.
 
----
 
-## 🔄 Manual Release Steps
-Mac Ultility Tool features an automatic updater that checks GitHub Releases for new versions.
-
-### How to Publish a New Release manually
-1. **Bump Version:** Update the `version` field in `package.json`.
-2. **Build the Application:** Ensure you have the `GH_TOKEN` environment variable set, then run:
-   ```bash
-   npm run build
-   ```
-   This will generate the `.dmg`, `.zip`, and `latest-mac.yml` files inside the `dist` directory.
-   By default, `electron-builder` is configured to publish a *draft* release onto GitHub.
-3. **Publish the Release:**
-   Go to your [GitHub repository releases page](https://github.com/Harrydtt/mac-utility-tool/releases). Find the draft release created by the build step, edit it, add release notes in the description, and publish it. The auto-updater will now detect the new release!
 
 ## 📥 Download
 
