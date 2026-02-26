@@ -1,0 +1,71 @@
+{
+    "appId": "com.maccleaner.app",
+    "productName": "Mac Ultility Tool",
+    "mac": {
+        "identity": null,
+        "category": "public.app-category.utilities",
+        "icon": "assets/tray-icon.png",
+        "target": [
+            {
+                "target": "dmg",
+                "arch": [
+                    "arm64"
+                ]
+            },
+            {
+                "target": "pkg",
+                "arch": [
+                    "arm64"
+                ]
+            }
+        ]
+    },
+    "dmg": {
+        "sign": false,
+        "contents": [
+            {
+                "x": 130,
+                "y": 220
+            },
+            {
+                "x": 410,
+                "y": 220,
+                "type": "link",
+                "path": "/Applications"
+            }
+        ]
+    },
+    "pkg": {
+        "scripts": "resources/pkg-scripts",
+        "installLocation": "/Applications"
+    },
+    "files": [
+        "dist/electron/**/*",
+        "dist/src/**/*",
+        "src/ui/**/*",
+        "assets/**/*",
+        "!**/node_modules/**/*",
+        "!**/.git/**/*",
+        "!**/dist/mac*/**",
+        "!**/*.dmg",
+        "!**/*.zip"
+    ],
+    "extraResources": [
+        {
+            "from": "assets",
+            "to": "assets"
+        },
+        {
+            "from": "resources/bin",
+            "to": "bin"
+        }
+    ],
+    "asar": true,
+    "publish": [
+        {
+            "provider": "github",
+            "owner": "Harrydtt",
+            "repo": "mac-utility-tool"
+        }
+    ]
+}

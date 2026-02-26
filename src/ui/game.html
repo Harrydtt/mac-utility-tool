@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Game Player</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            font-family: system-ui;
+        }
+
+        #game {
+            width: 100%;
+            height: 100%;
+        }
+
+        #loading {
+            position: absolute;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #fff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="game"></div>
+
+    <div id="loading">
+        <div class="spinner"></div>
+        <div id="status">Loading Game...</div>
+    </div>
+
+    <script>
+        (async function () {
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const coreParam = params.get('core');
+                const romUrl = params.get('rom');
+                const keysParam = params.get('keys');
+
+                if (!coreParam || !romUrl) throw new Error('Missing params');
+
+                if (keysParam) {
+                    try {
+                        const mapping = JSON.parse(decodeURIComponent(keysParam));
+                        console.log('[Game] Received custom key mapping:', mapping);
+                        // TODO: Apply mapping to EJS_inputdef if standard format is found
+                    } catch (e) {
+                        console.warn('[Game] Failed to parse key mapping:', e);
+                    }
+                }
+
+                document.getElementById('status').innerText = 'Fetching ROM...';
+
+                // ============================================
+                // EXISTING EMULATORJS LOGIC
+                // ============================================
+
+                // Core Mapping (Nostalgist/RetroArch names -> EmulatorJS names)
+                const coreMap = {
+                    'vba_next': 'gba',
+                    'mgba': 'gba',
+                    'gpsp': 'gba',
+                    'fceumm': 'nes',
+                    'nestopia': 'nes',
+                    'snes9x': 'snes',
+                    'gambatte': 'gb',
+                    'genesis_plus_gx': 'segaMD'
+                };
+                const ejsCore = coreMap[coreParam] || 'gba';
+
+                // Fetch ROM manually (bypasses potential CDN URL resolution issues)
+                const response = await fetch(romUrl);
+                if (!response.ok) throw new Error(`Failed to fetch ROM: ${response.status}`);
+                const blob = await response.blob();
+                const blobUrl = URL.createObjectURL(blob);
+
+                document.getElementById('status').innerText = `Starting ${ejsCore}...`;
+
+                // Configure EmulatorJS
+                window.EJS_player = '#game';
+                window.EJS_core = ejsCore;
+
+                // keyMapping handling
+                if (keysParam) {
+                    try {
+                        const mapping = JSON.parse(decodeURIComponent(keysParam));
+                        window.EJS_keybindings = mapping;
+                        console.log('[Game] EJS_keybindings set:', mapping);
+                    } catch (e) { console.error(e); }
+                }
+
+                window.EJS_gameUrl = blobUrl;
+                window.EJS_pathtodata = 'https://cdn.emulatorjs.org/stable/data/';
+                window.EJS_startOnLoaded = true;
+                window.EJS_DEBUG_XX = false; // Disable debug to avoid noise
+                window.EJS_preserveDrawingBuffer = true; // Required for toDataURL on WebGL canvas
+
+                // Load the script
+                const script = document.createElement('script');
+                script.src = 'https://cdn.emulatorjs.org/stable/data/loader.js';
+                script.onload = () => {
+                    document.getElementById('loading').remove();
+                };
+                script.onerror = () => {
+                    throw new Error('Failed to load EmulatorJS loader');
+                };
+                document.body.appendChild(script);
+
+                // Listen for IPC commands from Main Process
+                if (window.electronAPI) {
+                    window.electronAPI.onGameCommand((command, args) => {
+                        console.log('[Game] Received command:', command, args);
+                        switch (command) {
+                            case 'pause':
+                                if (window.EJS_emulator) window.EJS_emulator.pause();
+                                break;
+                            case 'resume':
+                                if (window.EJS_emulator) window.EJS_emulator.resume();
+                                break;
+                            case 'restart':
+                                if (window.EJS_emulator) window.EJS_emulator.restart();
+                                break;
+                            case 'fullscreen':
+                                if (!document.fullscreenElement) {
+                                    document.documentElement.requestFullscreen();
+                                } else {
+                                    if (document.exitFullscreen) document.exitFullscreen();
+                                }
+                                break;
+                            case 'snapshot':
+                                console.log('[Game] Received snapshot command. Preparing to capture...');
+                                try {
+                                    // EmulatorJS creates a canvas with id 'canvas'
+                                    const canvas = document.querySelector('canvas') || document.getElementById('canvas');
+                                    console.log('[Game] Canvas element found:', !!canvas);
+
+                                    if (!canvas) {
+                                        console.error('[Game] No canvas element found in the DOM.');
+                                        break;
+                                    }
+
+                                    if (!window.electronAPI || !window.electronAPI.saveGameThumbnail) {
+                                        console.error('[Game] window.electronAPI.saveGameThumbnail is not available.');
+                                        break;
+                                    }
+
+                                    if (!args || !args.gameId) {
+                                        console.error('[Game] No gameId provided in args:', args);
+                                        break;
+                                    }
+
+                                    console.log(`[Game] Extracting base64 data for game ${args.gameId}...`);
+                                    const dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+                                    if (!dataUrl || dataUrl === 'data:,') {
+                                        console.error('[Game] Canvas toDataURL returned empty or invalid data.');
+                                        break;
+                                    }
+
+                                    console.log('[Game] Data extracted successfully, sending to backend (length:', dataUrl.length, ')');
+                                    window.electronAPI.saveGameThumbnail(args.gameId, dataUrl)
+                                        .then(res => console.log('[Game] Thumbnail saved successfully:', res))
+                                        .catch(err => console.error('[Game] Failed to save thumbnail via IPC:', err));
+
+                                } catch (err) {
+                                    console.error('[Game] Snapshot execution error:', err);
+                                }
+                                break;
+                            case 'update-keys':
+                                // EmulatorJS key remapping at runtime is complex/undocumented
+                                console.log('[Game] Key update requested (not fully implemented)');
+                                break;
+                        }
+                    });
+                } else {
+                    console.warn('[Game] electronAPI not available (Preload issue?)');
+                }
+
+            } catch (e) {
+                document.getElementById('status').innerText = 'Error: ' + e.message;
+                document.getElementById('status').style.color = 'red';
+                console.error(e);
+            }
+        })();
+    </script>
+</body>
+
+</html>

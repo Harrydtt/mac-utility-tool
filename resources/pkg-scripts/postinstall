@@ -1,0 +1,14 @@
+#!/bin/bash
+# Post-install script for MacCleaner PKG installer
+# Automatically removes quarantine attribute to avoid Gatekeeper issues
+
+APP_PATH="/Applications/MacCleaner.app"
+
+echo "MacCleaner: Removing quarantine attribute..."
+
+# Remove quarantine attribute
+xattr -cr "$APP_PATH" 2>/dev/null || true
+
+echo "MacCleaner: Installation complete!"
+
+exit 0

@@ -1,5 +1,5 @@
 <p align="center">
-  <h1 align="center">🧹 Mac Cleaner</h1>
+  <h1 align="center">🧹 Mac Ultility Tool</h1>
   <p align="center">
     <strong>Your Mac, Your Control. 100% Offline & Private.</strong>
   </p>
@@ -19,7 +19,7 @@
 - **Deep Clean**: Intelligently scans specific system paths to remove cache, logs, and temporary files without touching your personal data.
 - **Safety First**: Buil-in **Safety Mode** prevents deleting critical system files. You can customize the **Safelist** to protect specific folders or extensions.
 
-### �️ Threat Detection
+### 🛡️ Threat Detection
 - **Integrated ClamAV Engine**: Uses the powerful open-source ClamAV engine to detect potential threats and malicious files hiding in your system.
 - **Real-time Stats**: Shows you exactly what's being scanned.
 
@@ -44,31 +44,44 @@ Meet your new best friend! This smart animated assistant lives in your menu bar.
 
 ---
 
+## 🔄 Auto-Update & Manual Release Steps
+Mac Ultility Tool features an automatic updater that checks GitHub Releases for new versions.
+
+### How to Publish a New Release manually
+1. **Bump Version:** Update the `version` field in `package.json`.
+2. **Build the Application:** Ensure you have the `GH_TOKEN` environment variable set, then run:
+   ```bash
+   npm run build
+   ```
+   This will generate the `.dmg`, `.zip`, and `latest-mac.yml` files inside the `dist` directory.
+   By default, `electron-builder` is configured to publish a *draft* release onto GitHub.
+3. **Publish the Release:**
+   Go to your [GitHub repository releases page](https://github.com/Harrydtt/mac-utility-tool/releases). Find the draft release created by the build step, edit it, add release notes in the description, and publish it. The auto-updater will now detect the new release!
 
 ## 📥 Download
 
 Download the latest version for your Mac:
 
-- **[Download for Intel Mac (.dmg)](https://github.com/Harrydtt/mac-cleaner/releases/latest)**
-- **[Download for Apple Silicon (M1/M2/M3) (.dmg)](https://github.com/Harrydtt/mac-cleaner/releases/latest)**
+- **[Download for Intel Mac (.dmg)](https://github.com/Harrydtt/mac-utility-tool/releases/latest)**
+- **[Download for Apple Silicon (M1/M2/M3) (.dmg)](https://github.com/Harrydtt/mac-utility-tool/releases/latest)**
 
 ## 🔧 How to Install
 
 1. Download the `.dmg` file for your Mac architecture via the links above.
-2. Open the file and drag **Mac Cleaner** to your **Applications** folder.
+2. Open the file and drag **Mac Ultility Tool** to your **Applications** folder.
 3. **Important for first launch**:
    - Since this is a free open-source app, macOS might check for developer verification.
-   - For the first time, **Right-click** (or Control-click) the Mac Cleaner app icon and select **Open**.
+   - For the first time, **Right-click** (or Control-click) the Mac Ultility Tool app icon and select **Open**.
    - Click **Open** again in the confirmation dialog.
 
 ## ⚙️ Setup Permissions (Important)
 
-To scan and clean hidden junk files effectively, Mac Cleaner needs **Full Disk Access**.
+To scan and clean hidden junk files effectively, Mac Ultility Tool needs **Full Disk Access**.
 
 1. Open **System Settings** (or System Preferences).
 2. Go to **Privacy & Security** > **Full Disk Access**.
-3. Look for **Mac Cleaner** in the list and turn the toggle **ON**.
-   - *If you don't see it:* Click the **+** button at the bottom, navigate to your Applications folder, and select Mac Cleaner.
+3. Look for **Mac Ultility Tool** in the list and turn the toggle **ON**.
+   - *If you don't see it:* Click the **+** button at the bottom, navigate to your Applications folder, and select Mac Ultility Tool.
 4. Restart the app if prompted.
 
 
@@ -77,15 +90,15 @@ To scan and clean hidden junk files effectively, Mac Cleaner needs **Full Disk A
 ## 🛠️ Troubleshooting
 
 ### "App is damaged and can't be opened" Error
-If you see a message saying **"MacCleaner.app is damaged and can't be opened"**, do not worry. This is a common warning for open-source apps that aren't notarized by Apple.
+If you see a message saying **"Mac Ultility Tool.app is damaged and can't be opened"**, do not worry. This is a common warning for open-source apps that aren't notarized by Apple.
 
 **To fix it:**
 
-1. Move **Mac Cleaner** to your **Applications** folder.
+1. Move **Mac Ultility Tool** to your **Applications** folder.
 2. Open the **Terminal** app.
 3. Paste the following command and hit Enter:
    ```bash
-   xattr -cr /Applications/MacCleaner.app
+   xattr -cr "/Applications/Mac Ultility Tool.app"
    ```
 4. Now you can open the app normally!
 

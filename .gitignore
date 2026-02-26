@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Temp files
+*.bak
+.gitignore.bak
+
+# Lock files (use npm)
+bun.lock
+
+# Test files and Archives
+*.zip
+*.rar
+Mole-main/
+alt-sendme-main/
+test_file.dat
+test_regex.js
+record/
