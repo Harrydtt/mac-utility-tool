@@ -27,24 +27,18 @@
 - **Scheduler**: Set it and forget it! Configure auto-cleaning schedules (Daily, Weekly) to keep your Mac running smooth.
 - **App Uninstaller**: Don't just delete the app—remove its leftover preferences, caches, and support files instantly.
 
----
+### 🌐 P2P File Transfer
+- **Direct Sharing**: Quickly send files and folders to any device on your local network or securely via internet.
+- **Cross-Platform**: Transfer files effortlessly between Mac, Windows, Linux, or mobile devices using a browser.
+- **Privacy-focused**: Files transfer directly device-to-device without passing through our servers.
 
-## 💎 Hidden Gems
-
-As a token of appreciation for those who support the project's development, we've prepared these special features as a **Thank You** gift:
-
-### 🌪️ Super Mode
-Activate the secret **Super Mode** for an "explosive" cleaning experience. Warning: It's extremely powerful! (Try it to believe it 😉)
-
-### 🐱 AI Cat Helper
-Meet your new best friend! This smart animated assistant lives in your menu bar.
-- **Smart Tips**: Gives you advice on how to save space.
-- **Interactive**: It reacts to your actions and keeps you company while cleaning.
-- **Personality**: It's not just a bot, it's a companion!
+### 🔄 Seamless Auto-Updates
+- **Always Current**: Mac Ultility Tool automatically checks for and downloads the latest features and security updates.
+- **Non-Intrusive**: Updates happen quietly in the background, only prompting you when they are ready to install.
 
 ---
 
-## 🔄 Auto-Update & Manual Release Steps
+## 🔄 Manual Release Steps
 Mac Ultility Tool features an automatic updater that checks GitHub Releases for new versions.
 
 ### How to Publish a New Release manually
