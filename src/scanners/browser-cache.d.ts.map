@@ -1,1 +1,0 @@
-{"version":3,"file":"browser-cache.d.ts","sourceRoot":"","sources":["browser-cache.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,mBAAmB,CAAC;AAChD,OAAO,EAAc,KAAK,UAAU,EAAE,KAAK,cAAc,EAAsB,MAAM,aAAa,CAAC;AAInG,qBAAa,mBAAoB,SAAQ,WAAW;IAClD,QAAQ,iCAA+B;IAEjC,IAAI,CAAC,QAAQ,CAAC,EAAE,cAAc,GAAG,OAAO,CAAC,UAAU,CAAC;CA8B3D"}
